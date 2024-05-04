@@ -4,26 +4,26 @@ const productSchema = new mongoose.Schema({
   employeeId: {
     type: Number,
     ref: "Employee",
-    required: [true, "Employee Id is required"],
+    required: [true, "Employee ID is required"],
   },
-  productName: {
+  saleName: {
     type: String,
-    required: [true, "Name of the product is required"],
+    required: [true, "Product name is required"],
   },
   price: {
     type: Number,
-    required: [true, "Price of the product is required"],
+    required: [true, "Price is required"],
   },
   quantity: {
     type: Number,
-    required: [true, "Quantity of the product is required"],
+    required: [true, "Quantity is required"],
   },
   serialNumber: {
-    type: Number,
+    type: String,
   },
-  AmountPaid: {
+  amountPaid: {
     type: Number,
-    required: [true, "Paid amound is required"],
+    required: [true, "Amount paid is required"],
   },
   category: {
     type: String,
@@ -31,6 +31,7 @@ const productSchema = new mongoose.Schema({
   orderStatus: {
     type: String,
     required: [true, "Order status is required"],
+    enum: ["planning", "in-Progress", "delivered"] // Restrict to these three choices
   },
   orderedAt: {
     type: Date,
@@ -45,15 +46,17 @@ const productSchema = new mongoose.Schema({
   paymentStatus: {
     type: String,
     required: [true, "Payment status is required"],
+    enum: ["pending", "completed", "prePayment"] // Restrict to these three choices
   },
   customerName: {
     type: String,
+    ref: "Customer",
   },
   description: {
     type: String,
   },
 });
 
-const Sale = new mongoose.model("Sale", productSchema);
+const Sale = mongoose.model("Sale", productSchema);
 
 module.exports = Sale;

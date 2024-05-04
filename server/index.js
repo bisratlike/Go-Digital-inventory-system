@@ -2,14 +2,14 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
-const databaseUrl = process.env.URL;
+// const databaseUrl = process.env.URL;
 const app = express();
 const PORT = process.env.PORT||3000;
-const localdatabase = process.env.Local ;
+const localdatabase = process.env.localdatabase ;
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(databaseUrl,{})
+mongoose.connect(localdatabase,{})
 .then(()=>{
 console.log("Connected")
 })
