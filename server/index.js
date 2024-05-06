@@ -9,6 +9,8 @@ const localdatabase = process.env.localdatabase ;
 app.use(express.json());
 app.use(cors());
 
+const authRoutes = require('./routes/authRoutes');
+
 mongoose.connect(localdatabase,{})
 .then(()=>{
 console.log("Connected")
@@ -17,6 +19,10 @@ console.log("Connected")
     console.error('Error connecting to MongoDB:', err);
 
 })
+
+app.use("/", authRoutes);
+
+
 
 const server = app.listen(PORT,()=>{
     console.log(`server is listening on port ${PORT}`)
