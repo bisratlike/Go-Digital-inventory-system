@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
+import { Typography } from '@material-tailwind/react';
+import InfoCard from './cards/InfoCard';
 
 const Dashboard = ({ userName }) => {
   const chartRef = useRef(null);
@@ -66,28 +68,48 @@ const Dashboard = ({ userName }) => {
   }, [stockReportData]);
 
   return (
-    <div className="container lg:ml-[250px] p-4"> {/* Adjusted margin for large screens */}
+    <div className=" w-[90%] lg:ml-[200px] p-4 mt-8"> {/* Adjusted margin for large screens */}
       <div className="text-[25px] font-bold mb-4 bg-secondary-color text-white p-10">Hello, {userName}</div>
 
+      <div className='w-[80%] m-auto'>
+      <div>
+      <Typography variant="h6" color="secondary-color" className='font-bold text-[25px] mb-3'>
+          Activity
+        </Typography>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow-md p-4">
+        <div className="bg-white rounded-lg shadow-md p-2">
           <h2 className="text-lg font-semibold mb-2">Today's Sale</h2>
           <p className="text-xl">{todaySale} USD</p>
         </div>
-        <div className="bg-white rounded-lg shadow-md p-4">
+        <div className="bg-white rounded-lg shadow-md p-2">
           <h2 className="text-lg font-semibold mb-2">Yearly Total Sale</h2>
           <p className="text-xl">{yearlyTotalSale} USD</p>
         </div>
-        <div className="bg-white rounded-lg shadow-md p-4">
+        <div className="bg-white rounded-lg shadow-md p-2">
           <h2 className="text-lg font-semibold mb-2">Net Income</h2>
           <p className="text-xl">{netIncome} USD</p>
         </div>
-        <div className="bg-white rounded-lg shadow-md p-4">
+        <div className="bg-white rounded-lg shadow-md p-2">
           <h2 className="text-lg font-semibold mb-2">Products Sold</h2>
           <p className="text-xl">{productsSold}</p>
         </div>
       </div>
 
+      </div>
+    <div className='flex lg:flex-row flex-col m-auto'>
+      <InfoCard 
+          title="Purchase Order"
+          quantity={0}
+          totalCost={0.00}
+          />
+      <InfoCard 
+          title="Sales Order"
+          quantity={0}
+          totalCost={0}
+          />
+        </div>
       {/* Stock Report Graph */}
       <div className="bg-white rounded-lg shadow-md p-4">
         <h2 className="text-lg font-semibold mb-4">Stock Report</h2>

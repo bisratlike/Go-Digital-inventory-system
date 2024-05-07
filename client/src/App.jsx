@@ -1,20 +1,29 @@
 import React from 'react';
 import Dashboard from './components/Dashboard';
-import Sidebar from './components/SideBar';
+import { SideBar } from './components';
+import { MainNavBar } from './components';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Footer from './components/Footer';
 
 const App = () => {
   return (
     <Router>
-      <div className="grid grid-cols-1 sm:grid-cols-auto gap-4">
-        <Sidebar />
-        <div className="main-content">
+      <>
+          <MainNavBar/>
+      <div className='flex flex-row h-screen'>
+        <SideBar />
+        <div className='flex-1 flex flex-col'>
+        <div className="main-content flex flex-col">
           <Routes>
             <Route path="/" element={<Dashboard userName="Dan" />} />
             {/* Other routes */}
           </Routes>
+            </div>
+            <Footer/>
         </div>
       </div>
+      </>
     </Router>
   );
 };
