@@ -20,7 +20,7 @@ const App = () => {
             {/* Other routes */}
           </Routes>
             </div>
-            <Footer/>
+            <Footer className="mt-20"/>
         </div>
       </div>
       </>
