@@ -5,9 +5,16 @@ import {
   Typography,
   Button,
   IconButton,
-  Card,
+  List,
+  ListItem,
+  ListItemPrefix,
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
 } from "@material-tailwind/react";
  
+import { ChevronRightIcon, ChevronDownIcon, PlusIcon   } from "@heroicons/react/24/outline";
+import { useState } from "react";
  function MainNavBar() {
   const [openNav, setOpenNav] = React.useState(false);
  
@@ -17,49 +24,70 @@ import {
       () => window.innerWidth >= 960 && setOpenNav(false),
     );
   }, []);
+
+  const [open, setOpen] = React.useState(0);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+ 
+  const handleOpen = (value) => {
+    setOpen(open === value ? 0 : value);
+  };
+ 
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
  
   const navList = (
+
+    
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <Accordion
+          open={open === 1}
+          className="relative"
+          icon={
+            <ChevronDownIcon
+              strokeWidth={2.5}
+              className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? "rotate-180" : ""} text-secondary-color`}
+            />
+          }
+        >
+          <ListItem className="p-0" selected={open === 1}>
+            <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
+              
+              <Typography color="blue-gray" className="mr-auto font-normal text-secondary-color">
+                GoDigital
+              </Typography>
+            </AccordionHeader>
+          </ListItem>
+          <AccordionBody className="absolute">
+            {open === 1 && (
+              <List className="p-0 bg-background-color">
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon className="h-5 w-5" />
+                  </ListItemPrefix>
+                  Company
+                </ListItem>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon className="h-5 w-5" />
+                  </ListItemPrefix>
+                  Company
+                </ListItem>
+              </List>
+            )}
+          </AccordionBody>
+        </Accordion>
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center text-secondary-color">
-          Pages
-        </a>
+        <Button className="bg-primary-color rounded-[5px] border p-3"><PlusIcon className="h-5 w-5 "/></Button>
       </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center text-secondary-color">
-          Account
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center text-secondary-color">
-          Blocks
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal text-secondary-color"
-      >
-        <a href="#" className="flex items-center">
-          Docs
-        </a>
-      </Typography>
+      
+      
     </ul>
   );
  
@@ -70,13 +98,13 @@ import {
           <Typography
             as="a"
             href="#"
-            className="mr-4 cursor-pointer py-1.5 font-medium text-secondary-color"
+            className="mr-4 cursor-pointer px-4 py-3 font-medium text-white bg-primary-color"
           >
-            Material Tailwind
+            GoDigital Inventory
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
-            <div className="flex items-center gap-x-1">
+            {/* <div className="flex items-center gap-x-1">
               <Button
                 variant="text"
                 size="sm"
@@ -91,10 +119,10 @@ import {
               >
                 <span>Sign in</span>
               </Button>
-            </div>
+            </div> */}
             <IconButton
               variant="text"
-              className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+              className="ml-auto h-6 w-6 text-inherit text-secondary-color hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
               ripple={false}
               onClick={() => setOpenNav(!openNav)}
             >

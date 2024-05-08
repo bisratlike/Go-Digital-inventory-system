@@ -42,7 +42,7 @@ import { useState } from "react";
   };
 
   return (
-    <>
+    <aside className="w-64 absolute inset-y-0 left-0">
    <div className=" hidden md:block fixed top-14  ">
     <Card className=" h-[100vh] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-background-color flex flex-col">
       <div className="mt-[44.6px]">
@@ -87,19 +87,25 @@ import { useState } from "react";
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                Analytics
+                Customer
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                Reporting
+                Sales Order
               </ListItem>
               <ListItem>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
-                Projects
+                Invoices
+              </ListItem>
+              <ListItem>
+                <ListItemPrefix>
+                  <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
+                </ListItemPrefix>
+                Recieved payments
               </ListItem>
             </List>
             )}
@@ -131,13 +137,19 @@ import { useState } from "react";
                   <ListItemPrefix>
                     <ChevronRightIcon className="h-5 w-5" />
                   </ListItemPrefix>
-                  Orders
+                  Vendors
                 </ListItem>
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon className="h-5 w-5" />
                   </ListItemPrefix>
-                  Products
+                  Purchase Orders
+                </ListItem>
+                <ListItem>
+                  <ListItemPrefix>
+                    <ChevronRightIcon className="h-5 w-5" />
+                  </ListItemPrefix>
+                  Purchase Recieves
                 </ListItem>
               </List>
             )}
@@ -220,7 +232,7 @@ import { useState } from "react";
     </Card>
     </div>
 
-    <div className="lg:hidden fixed top-6 right-14">
+    <div className="lg:hidden fixed top-6 right-14 z-100">
         <button onClick={toggleSidebar} className="text-white">
         <FontAwesomeIcon icon={faBars} size="lg" />
         </button>
@@ -262,7 +274,7 @@ import { useState } from "react";
         </Card>
       )
     }
-</>
+</aside>
   );
 }
 
