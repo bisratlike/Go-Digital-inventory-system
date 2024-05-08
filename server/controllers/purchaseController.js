@@ -15,6 +15,13 @@ class PurchaseController {
 
       // Get the vendor ID
       const existingVendor = await Vendor.findOne({ vendorName });
+
+      if (!existingVendor) {
+        return res
+          .status(200)
+          .json({ error: "Vendor do not exist, Please add your vendor." });
+      }
+
       const vendorId = existingVendor._id;
 
       const newPurchase = await Purchase.create({
@@ -24,12 +31,12 @@ class PurchaseController {
         serialNumber: req.body.serialNumber,
         price: req.body.price,
         category: req.body.category,
-        orderDate: req.body.orderDate,
+        receivedAt: req.body.receivedAt,
         receiptPhoto: req.body.receiptPhoto,
         vendorId: vendorId,
         vendorName: req.body.vendorName,
-        phoneNumber: req.body.phoneNumber,
-        VendorsEmail: req.body.VendorsEmail,
+        phoneNumber: existingVendor.phoneNumber,
+        VendorsEmail: existingVendor.VendorsEmail,
         description: req.body.description,
       });
 
