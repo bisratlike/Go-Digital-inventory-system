@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 const authRoutes = require('./routes/authRoutes');
+const saleRoutes = require('./routes/saleRoutes');
 
 mongoose.connect(localdatabase,{})
 .then(()=>{
@@ -21,7 +22,7 @@ console.log("Connected")
 })
 
 app.use("/", authRoutes);
-
+app.use("/sales", saleRoutes);
 
 
 const server = app.listen(PORT,()=>{
