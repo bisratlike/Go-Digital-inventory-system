@@ -8,7 +8,7 @@ const vendorSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
   },
-  VendorsEmail: {
+  vendorsEmail: {
     type: String,
     required: [true, "Vendor email is required"],
   },

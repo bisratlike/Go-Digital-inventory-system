@@ -41,6 +41,9 @@ const purchaseSchema = new mongoose.Schema({
   phoneNumber: {
     type: String,
   },
+  vendorsEmail: {
+    type: String,
+  },
   description: {
     type: String,
   },

@@ -3,7 +3,7 @@ const Vendor = require("../models/Vendor");
 class VendorController {
   // Purchaser: creates a vendor
   static async createVendor(req, res) {
-    const { vendorName, phoneNumber, VendorsEmail } = req.body;
+    const { vendorName, phoneNumber, vendorsEmail } = req.body;
 
     try {
       // Check for existing vendor
@@ -16,7 +16,7 @@ class VendorController {
       const newVendor = await Vendor.create({
         vendorName,
         phoneNumber,
-        VendorsEmail,
+        vendorsEmail,
       });
 
       res.status(201).json(newVendor);
@@ -30,14 +30,14 @@ class VendorController {
 
   // Purchaser: update the vendor
   static async updateVendor(req, res) {
-    const { vendorName } = req.params;
+    const { id } = req.params; // Vendor Id
 
     try {
       const updatedVendor = await Vendor.findOneAndUpdate(
-        vendorName,
+        id,
         {
           phoneNumber: req.body.phoneNumber,
-          VendorsEmail: req.body.VendorsEmail,
+          vendorsEmail: req.body.vendorsEmail,
         },
         { new: true }
       );
@@ -57,10 +57,10 @@ class VendorController {
 
   // Purchaser: get a single vendor
   static async getVendor(req, res) {
-    const { vendorName } = req.body;
+    const { id } = req.params; // Vendor's Id
 
     try {
-      const vendor = await Vendor.find({ vendorName });
+      const vendor = await Vendor.findOne({ id });
 
       if (!vendor) {
         return res.status(404).json({ error: "Vendor not found" });
@@ -97,10 +97,10 @@ class VendorController {
 
   // Purchaser: deletes a vendor
   static async deleteVendor(req, res) {
-    const { vendorName } = req.params;
+    const { id } = req.params;
 
     try {
-      const deletedVendor = await Vendor.findOneAndDelete(vendorName);
+      const deletedVendor = await Vendor.findOneAndDelete(id);
 
       if (!deletedVendor) {
         return res.status(404).json({ error: "Vendor not found" });

@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 class PurchaseController {
   // Creates a purchase
   static async createPurchase(req, res) {
-    const vendorName = req.body.vendorName;
+    const { id } = req.params; // Vendor's Id
 
     try {
       // Get the authorized user ID
@@ -14,7 +14,7 @@ class PurchaseController {
       const employeeId = decoded.employeeId;
 
       // Get the vendor ID
-      const existingVendor = await Vendor.findOne({ vendorName });
+      const existingVendor = await Vendor.findOne({ id });
 
       if (!existingVendor) {
         return res
@@ -36,7 +36,7 @@ class PurchaseController {
         vendorId: vendorId,
         vendorName: req.body.vendorName,
         phoneNumber: existingVendor.phoneNumber,
-        VendorsEmail: existingVendor.VendorsEmail,
+        vendorsEmail: existingVendor.vendorsEmail,
         description: req.body.description,
       });
 
@@ -51,10 +51,10 @@ class PurchaseController {
 
   // Get a single purchase
   static async getPurchase(req, res) {
-    const { serialNumber } = req.body;
+    const { id } = req.params;
 
     try {
-      const purchase = await Purchase.find({ serialNumber });
+      const purchase = await Purchase.findOne({ id });
 
       if (!purchase) {
         return res.status(404).json({ error: "Purchase not found" });
@@ -93,22 +93,31 @@ class PurchaseController {
 
   // Update already made purchase
   static async updatePurchase(req, res) {
-    const { serialNumber } = req.params;
+    const { id } = req.params;
 
     try {
+      // Get the vendor ID
+      const existingVendor = await Vendor.findOne({ id });
+
+      if (!existingVendor) {
+        return res
+          .status(200)
+          .json({ error: "Vendor do not exist, Please add your vendor." });
+      }
+
       const updatedPurchase = await Purchase.findOneAndUpdate(
-        serialNumber,
+        id,
         {
           purchaseName: req.body.purchaseName,
           quantity: req.body.quantity,
           serialNumber: req.body.serialNumber,
           price: req.body.price,
           category: req.body.category,
-          orderDate: req.body.orderDate,
+          receivedAt: req.body.receivedAt,
           receiptPhoto: req.body.receiptPhoto,
           vendorName: req.body.vendorName,
-          phoneNumber: req.body.phoneNumber,
-          VendorsEmail: req.body.VendorsEmail,
+          phoneNumber: existingVendor.phoneNumber,
+          vendorsEmail: existingVendor.vendorsEmail,
           description: req.body.description,
         },
         { new: true }
@@ -129,10 +138,10 @@ class PurchaseController {
 
   // Delete a purchase
   static async deletePurchase(req, res) {
-    const { serialNumber } = req.params;
+    const { id } = req.params;
 
     try {
-      const deletedPurchase = await Purchase.findOneAndDelete(serialNumber);
+      const deletedPurchase = await Purchase.findOneAndDelete(id);
 
       if (!deletedPurchase) {
         return res.status(404).json({ error: "Purchase not found" });
