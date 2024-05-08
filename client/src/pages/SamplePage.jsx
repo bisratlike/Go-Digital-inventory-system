@@ -2,7 +2,9 @@ import React from 'react'
 
 const SamplePage = () => {
   return (
-    <div>SamplePage</div>
+    <div>
+        this is sample page delete and create your own
+    </div>
   )
 }
 
