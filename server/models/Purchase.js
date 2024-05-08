@@ -24,7 +24,7 @@ const purchaseSchema = new mongoose.Schema({
   category: {
     type: String,
   },
-  orderDate: {
+  receivedAt: {
     type: Date,
     required: true,
   },
