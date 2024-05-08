@@ -2,11 +2,10 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-require('dotenv').config();
+require("dotenv").config();
 const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 const Employee = require("../models/Employee");
-
 
 exports.signup = async (req, res) => {
   // Validate user input
@@ -43,7 +42,10 @@ exports.login = async (req, res) => {
     return res.status(401).json({ message: "Invalid email or password" });
   }
 
-  const validPassword = await bcrypt.compare(req.body.password, employee.password);
+  const validPassword = await bcrypt.compare(
+    req.body.password,
+    employee.password
+  );
   if (!validPassword) {
     return res.status(401).json({ message: "Invalid email or password" });
   }
@@ -96,9 +98,13 @@ exports.forgotPassword = async (req, res) => {
         .json({ error: "User with this email does not exist" });
     }
 
-    const resetPasswordToken = jwt.sign({ employeeId: employee._id }, process.env.jwtWebTokenKey, {
-      expiresIn: "1h",
-    });
+    const resetPasswordToken = jwt.sign(
+      { employeeId: employee._id },
+      process.env.jwtWebTokenKey,
+      {
+        expiresIn: "1h",
+      }
+    );
     const resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour in milliseconds
 
     // Save the token and expiration time in the user model
