@@ -66,7 +66,7 @@ exports.addSales =   async (req, res) => {
         saleName,
         price,
         quantity,
-        serialNumber: "",
+        serialNumber: serialNumber?? "",
         amountPaid,
         category,
         orderStatus: orderStatus??  "planning",
