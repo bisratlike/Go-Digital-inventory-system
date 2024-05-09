@@ -68,10 +68,10 @@ const Dashboard = ({ userName }) => {
   }, [stockReportData]);
 
   return (
-    <div className="min-h-screen mb-[200px] pb-12 w-[90%] lg:ml-[200px] p-4 mt-20 "> {/* Adjusted margin for large screens */}
+    <div className="min-h-screen  lg: mt-20 "> {/* Adjusted margin for large screens */}
       <div className="text-[25px] font-bold mb-4 bg-secondary-color text-white p-10">Hello, {userName}</div>
 
-      <div className='w-[80%] m-auto'>
+      <div className=' m-auto'>
       <div>
       <Typography variant="h6" color="secondary-color" className='font-bold text-[25px] mb-3'>
           Activity

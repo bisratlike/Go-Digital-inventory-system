@@ -1,12 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+// src/pages/Home.jsx
+import React from 'react';
+import Hero from '../components/Hero';
+import Features from '../components/Features';
+import CTA from '../components/CTA';
+
 const Home = () => {
   return (
-    <div className='mt-[200px]'>
-        Home
-        <Link to="/login">Login</Link>
+    <div>
+      <Hero />
+      <Features />
+      <CTA />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
+
+{/* <Link to="/login">Login</Link> */}
