@@ -16,7 +16,7 @@ exports.authenticate = (req, res, next) => {
     const decodedToken = jwt.verify(token, key);
 
     // Attach authenticated user to request object
-    req.employee= decodedToken;
+    req.employee = decodedToken;
     next();
   } catch (err) {
     res.status(401).json({ message: 'Unauthorized' });
@@ -25,7 +25,10 @@ exports.authenticate = (req, res, next) => {
 
 exports.authorize = (requiredRole) => {
   return (req, res, next) => {
-    if (req.employee && req.employee.role === requiredRole) {
+    const token = req.headers.authorization.split(' ')[1];
+    const employee = jwt.verify(token, process.env.jwtWebTokenKey);
+
+    if (employee && employee.role === requiredRole) {
       next();
     } else {
       res.status(403).json({ message: 'Forbidden' });
