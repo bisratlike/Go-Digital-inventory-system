@@ -42,9 +42,9 @@ import { useState } from "react";
   };
 
   return (
-    <aside className="w-64 absolute inset-y-0 left-0">
-   <div className=" hidden md:block fixed top-14  ">
-    <Card className=" h-[100vh] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-background-color flex flex-col">
+    <aside className="w-64 -z-1 inset-y-0 left-0">
+   <div className=" hidden md:block top-14  ">
+    <Card className="z-400 h-[100vh] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-background-color flex flex-col">
       <div className="mt-[44.6px]">
         <Typography variant="h6" color="blue-gray">
           General
