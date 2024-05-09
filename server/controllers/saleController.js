@@ -1,79 +1,88 @@
 require('dotenv').config();
 const Sale = require('../models/Sale');
-const { ObjectId } = require('mongodb');
+const ObjectId = require('mongodb').ObjectId;
+const jwt = require("jsonwebtoken");
+const Customer= require("../models/Customer")
+const mongoose= require("mongoose");
 
 
-//  async function addSales (req, res) {
-//   const token = req.header('Authorization').split(' ')[1]; // Extract token from header
-  
 
-//   try {
-//     decodedToken = jwt.verify(token, 'YOUR_SECRET_KEY'); // Verify and decode token
-//   } catch (error) {
-//     return res.status(401).send('Unauthorized: Invalid token');
-//   }
-
-//   const userId = decodedToken.id; // Extract user ID from token
-//   //
-//     try {
-//       const decodedToken = jwt.verify(token, process.env.jwtWebTokenKey);
-//       const employeeId = decodedToken._id;
-//       const { 
-       
-//         saleName, 
-//         price, 
-//         quantity,
-//         serialNumber,
-//         amountPaid ,
-//         category,
-//         orderStatus ,
-//         orderedAt ,
-//         deliveredAt,
-//         paymentStatus,
-//         customerId
-//         } = req.body;
-//       const photoBase64 = req.file.buffer.toString("base64");
-        
-//       const sale = new Sale({
-        
-//         employeeId,
-//         saleName, 
-//         price, 
-//         quantity,
-//         serialNumber :"",
-//         amountPaid ,
-//         category,
-//         orderStatus :"planning",
-//         orderedAt ,
-//         deliveredAt,
-//         photoBase64,
-//         paymentStatus:"pending",
-//         customerId,
-//       });
-  
-//       await sale.save();
-//       res.status(201).json({ message: "Product created successfully" });
-//     } catch (error) {
-//       res.status(500).json({ error: error.message });
-//     }
-//   };
-
-
-  exports.updateOrderStatus = async (req, res) => {
+exports.updateOrderStatus = async (req, res) => {
     try {
-        const mysaleId = req.params.mysaleId;
+        const _id = req.params;
         const { orderStatus } = req.body;
-        const saleId = new ObjectId(mysaleId);
-
-
-        const updatedOrder = await Order.findByIdAndUpdate(saleId, { orderStatus }, { new: true });
+        
+        const updatedOrder = await Sale.findById(_id);
 
         if (!updatedOrder) {
-            return res.status(404).json({ message: 'Order not found' });
+            return res.status(404).json({ message: 'SALE not found' });
         }
 
-        res.status(200).json({ message: 'Order status updated successfully', orderStatus: updatedOrder });
+        const newOrderStatus = updatedOrder.orderStatus;
+
+        res.status(200).json({ message: 'Order status updated successfully', orderStatus: orderStatus });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+exports.addSales =   async (req, res) => {
+    try {
+      const token = req.header("Authorization").split(" ")[1];
+      const decodedToken = jwt.verify(token, process.env.jwtWebTokenKey);
+      const employeeId = decodedToken.employeeId;
+    //   console.log(req.file)
+     console.log(req.file.buffer)
+      const photoBase64=  req.file.buffer.toString('base64');
+      console.log(photoBase64)
+
+  
+      const {
+        
+        saleName,
+        price,
+        quantity,
+        serialNumber,
+        amountPaid,
+        category,
+        orderStatus,
+        orderedAt,
+        deliveredAt,
+        receiptPhoto,
+        paymentStatus,
+        customerId,
+        description
+      } = req.body;
+      
+      const customer = await Customer.findById(customerId);
+      if (!customer) {
+        return res.status(404).json({ error: "customer not exists" });
+      }
+      
+      console.log(customer);
+      const customerName = customer.customerName
+      console.log(customerName);
+      const sale = new Sale({
+        employeeId,
+        saleName,
+        price,
+        quantity,
+        serialNumber: "",
+        amountPaid,
+        category,
+        orderStatus: orderStatus??  "planning",
+        orderedAt,
+        deliveredAt,
+        receiptPhoto:photoBase64,
+        paymentStatus: paymentStatus??  "pending",
+        customerId,
+        customerName:customerName,
+        description
+        
+      });
+
+      await sale.save();
+      res.status(201).json({ message: "Product created successfully" });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
