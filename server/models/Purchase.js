@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const purchaseSchema = new mongoose.Schema({
   employeeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Employee",
+    ref: 'Employee',
     required: true,
   },
   purchaseName: {
@@ -33,7 +33,7 @@ const purchaseSchema = new mongoose.Schema({
   },
   vendorId: {
     type: String,
-    ref: "Vendor",
+    ref: 'Vendor',
   },
   vendorName: {
     type: String,
@@ -49,6 +49,6 @@ const purchaseSchema = new mongoose.Schema({
   },
 });
 
-const Purchase = mongoose.model("Purchase", purchaseSchema);
+const Purchase = mongoose.model('Purchase', purchaseSchema);
 
 module.exports = Purchase;

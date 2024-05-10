@@ -1,6 +1,6 @@
-const Purchase = require("../models/Purchase");
-const Vendor = require("../models/Vendor");
-const jwt = require("jsonwebtoken");
+const Purchase = require('../models/Purchase');
+const Vendor = require('../models/Vendor');
+const jwt = require('jsonwebtoken');
 
 class PurchaseController {
   // Creates a purchase
@@ -9,7 +9,7 @@ class PurchaseController {
 
     try {
       // Get the authorized user ID
-      const token = req.headers.authorization.split(" ")[1];
+      const token = req.headers.authorization.split(' ')[1];
       const decoded = jwt.verify(token, process.env.jwtWebTokenKey);
       const employeeId = decoded.employeeId;
 
@@ -19,7 +19,7 @@ class PurchaseController {
       if (!existingVendor) {
         return res
           .status(200)
-          .json({ error: "Vendor do not exist, Please add your vendor." });
+          .json({ error: 'Vendor do not exist, Please add your vendor.' });
       }
 
       const vendorId = existingVendor._id;
@@ -43,9 +43,7 @@ class PurchaseController {
       return res.status(201).json(newPurchase);
     } catch (error) {
       console.error(`Error occured while Creating a vendor: ${error.message}`);
-      return res
-        .status(500)
-        .json({ error: "An error occured while creating a vendor." });
+      return res.status(500).json({ error: 'An error occured while creating a vendor.' });
     }
   }
 
@@ -57,17 +55,13 @@ class PurchaseController {
       const purchase = await Purchase.findOne({ id });
 
       if (!purchase) {
-        return res.status(404).json({ error: "Purchase not found" });
+        return res.status(404).json({ error: 'Purchase not found' });
       }
 
       return res.status(200).json(purchase);
     } catch (error) {
-      console.error(
-        `Error occured while gettting a purchase: ${error.message}`
-      );
-      return res
-        .status(500)
-        .json({ error: "An error occured while getting a purchase" });
+      console.error(`Error occured while gettting a purchase: ${error.message}`);
+      return res.status(500).json({ error: 'An error occured while getting a purchase' });
     }
   }
 
@@ -77,17 +71,15 @@ class PurchaseController {
       const purchases = await Purchase.find({});
 
       if (!purchases) {
-        return res.status(404).json({ error: "No purchases are found" });
+        return res.status(404).json({ error: 'No purchases are found' });
       }
 
       return res.status(200).json(purchases);
     } catch (error) {
-      console.error(
-        `Error occured while getting all purchases: ${error.message}`
-      );
+      console.error(`Error occured while getting all purchases: ${error.message}`);
       return res
         .status(500)
-        .json({ error: "An error occured while getting all purchases" });
+        .json({ error: 'An error occured while getting all purchases' });
     }
   }
 
@@ -102,7 +94,7 @@ class PurchaseController {
       if (!existingVendor) {
         return res
           .status(200)
-          .json({ error: "Vendor do not exist, Please add your vendor." });
+          .json({ error: 'Vendor do not exist, Please add your vendor.' });
       }
 
       const updatedPurchase = await Purchase.findOneAndUpdate(
@@ -124,7 +116,7 @@ class PurchaseController {
       );
 
       if (!updatedPurchase) {
-        return res.status(404).json({ error: "Purchase is not found" });
+        return res.status(404).json({ error: 'Purchase is not found' });
       }
 
       return res.status(200).json(updatedPurchase);
@@ -132,29 +124,27 @@ class PurchaseController {
       console.error(`Error occured while updating a vendor: ${error.message}`);
       return res
         .status(500)
-        .json({ error: "An error occured while updating a purchase" });
+        .json({ error: 'An error occured while updating a purchase' });
     }
   }
 
   // Delete a purchase
   static async deletePurchase(req, res) {
-    const { id } = req.params;
+    const { id } = req.params.id;
 
     try {
       const deletedPurchase = await Purchase.findOneAndDelete(id);
 
       if (!deletedPurchase) {
-        return res.status(404).json({ error: "Purchase not found" });
+        return res.status(404).json({ error: 'Purchase not found' });
       }
 
-      return res.status(200).json({ message: "Purchase deleted successfully" });
+      return res.status(200).json({ message: 'Purchase deleted successfully' });
     } catch (error) {
-      console.error(
-        `Error occured while deleting a purchase: ${error.message}`
-      );
+      console.error(`Error occured while deleting a purchase: ${error.message}`);
       return res
         .status(500)
-        .json({ error: "An error occured while deleting a purchase" });
+        .json({ error: 'An error occured while deleting a purchase' });
     }
   }
 }

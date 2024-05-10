@@ -81,7 +81,9 @@ class VendorController {
       return res.status(200).json(vendors);
     } catch (error) {
       console.error(`Error occured while getting all vendors: ${error.message}`);
-      return res.status(500).json({ error: 'An error occured while getting all vendors' });
+      return res
+        .status(500)
+        .json({ error: 'An error occured while getting all vendors' });
     }
   }
 
