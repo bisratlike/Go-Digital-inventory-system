@@ -18,7 +18,8 @@ exports.updateOrderStatus = async (req, res) => {
             return res.status(404).json({ message: 'SALE not found' });
         }
 
-        const newOrderStatus = updatedOrder.orderStatus;
+        updatedOrder.orderStatus = orderStatus;
+        await updatedOrder.save();
 
         res.status(200).json({ message: 'Order status updated successfully', orderStatus: orderStatus });
     } catch (error) {
