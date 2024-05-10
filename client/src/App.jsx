@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './components/Dashboard';
+import AddNewCustomer from './pages/AddNewCustomer'
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -21,7 +22,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        
+        <Route path="/add-new-customer" element={<AddNewCustomer />} />
         {isAuthenticated ? (
           <Route
             path="/dashboard"
