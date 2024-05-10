@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './components/Dashboard';
 import AddNewCustomer from './pages/AddNewCustomer'
+import './index.css'
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);

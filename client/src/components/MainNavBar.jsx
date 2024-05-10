@@ -40,7 +40,7 @@ import { useState } from "react";
   const navList = (
 
     
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="mt-2 font-montserrat mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Accordion
           open={open === 1}
           className="relative"
@@ -54,7 +54,7 @@ import { useState } from "react";
           <ListItem className="p-0" selected={open === 1}>
             <AccordionHeader onClick={() => handleOpen(1)} className="border-b-0 p-3">
               
-              <Typography color="blue-gray" className="mr-auto font-normal text-secondary-color">
+              <Typography color="blue-gray" className="mr-auto font-[500] text-[.9rem] text-secondary-color">
                 GoDigital
               </Typography>
             </AccordionHeader>
@@ -62,7 +62,7 @@ import { useState } from "react";
           <AccordionBody className="absolute">
             {open === 1 && (
               <List className="p-0 bg-background-color">
-                <ListItem>
+                <ListItem className="">
                   <ListItemPrefix>
                     <ChevronRightIcon className="h-5 w-5" />
                   </ListItemPrefix>
@@ -92,9 +92,9 @@ import { useState } from "react";
   );
  
   return (
-    <div className=" max-h-[768px] w-full ">
+    <div className="z-1000 max-h-[768px] w-full ">
 
-      <Navbar className="z-1000 w-full top-0 z-10 h-max  rounded-none px-4 py-2 lg:px-8 lg:py-4">
+      <Navbar className="w-full top-0 z-10 h-max  rounded-none px-4 py-2 lg:px-8 lg:py-4">
 
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
