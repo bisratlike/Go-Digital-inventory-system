@@ -13,7 +13,8 @@ const authRoutes = require('./routes/authRoutes');
 const saleRoutes = require('./routes/saleRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 const purchaseRoutes = require("./routes/purchaseRoutes");
-const vendorRoutes = require("./routes/vendorRoutes")
+const vendorRoutes = require("./routes/vendorRoutes");
+const employeeRoutes = require("./routes/employeeRoutes");
 
 mongoose.connect(localdatabase,{})
 .then(()=>{
@@ -29,6 +30,7 @@ app.use("/sales", saleRoutes);
 app.use("/customer",customerRoutes);
 app.use("/vendor",vendorRoutes);
 app.use("/purchase",purchaseRoutes);
+app.use("/employee",employeeRoutes);
 
 
 const server = app.listen(PORT,()=>{
