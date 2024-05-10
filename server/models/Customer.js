@@ -6,13 +6,17 @@ const customerSchema = new mongoose.Schema({
     enum: ['business', 'individual'], // Restrict to these two choices
     required: [true, 'Customer type is required'],
   },
-  fullName: { Type: String, Required: [true, 'Full name is required'] },
+  customerName: {
+    type: String,
+    required: [true, 'Customer Name is required'
+  },
   companyName: {
     type: String,
   },
   customerEmail: {
     type: String,
     required: [true, 'Customer email is required'],
+    unique:true
   },
   customerPhone: {
     type: String,

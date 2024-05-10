@@ -10,8 +10,12 @@ app.use(express.json());
 app.use(cors());
 
 const authRoutes = require('./routes/authRoutes');
+
 const purchaseRoute = require('./routes/purchaseRoutes');
 const vendorRoutes = require('./routes/vendorRoutes');
+const saleRoutes = require('./routes/saleRoutes');
+const customerRoutes = require('./routes/customerRoutes');
+
 
 mongoose
   .connect(localdatabase, {})
@@ -22,11 +26,15 @@ mongoose
     console.error('Error connecting to MongoDB:', err);
   });
 
-app.use('/', authRoutes);
+app.use("/", authRoutes);
+app.use("/sales", saleRoutes);
+app.use("/customer",customerRoutes);
 app.use(purchaseRoute);
 app.use(vendorRoutes);
 
-const server = app.listen(PORT, () => {
-  console.log(`server is listening on port ${PORT}`);
+
+const server = app.listen(PORT,()=>{
+    console.log(`server is listening on port ${PORT}`)
+
 });
 module.exports = server;

@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
   employeeId: {
-    type: Number,
-    ref: 'Employee',
-    required: [true, 'Employee ID is required'],
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employee",
+    required: [true, "Employee ID is required"],
   },
   saleName: {
     type: String,
@@ -31,7 +31,7 @@ const productSchema = new mongoose.Schema({
   orderStatus: {
     type: String,
     required: [true, 'Order status is required'],
-    enum: ['planning', 'in-Progress', 'delivered'], // Restrict to these three choices
+    enum: ['planning', 'in-Progress', 'delivered', 'cancel'], // Restrict to these three choices
   },
   orderedAt: {
     type: Date,
@@ -46,11 +46,15 @@ const productSchema = new mongoose.Schema({
   paymentStatus: {
     type: String,
     required: [true, 'Payment status is required'],
-    enum: ['pending', 'completed', 'prePayment'], // Restrict to these three choices
+    enum: ['pending', 'completed', 'prePayment', 'cancel'], // Restrict to these three choices
   },
   customerName: {
     type: String,
     ref: 'Customer',
+  },
+  customerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Customer",
   },
   description: {
     type: String,
