@@ -7,7 +7,10 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './components/Dashboard';
 import AddNewCustomer from './pages/AddNewCustomer'
-import './index.css'
+
+import { AuthProvider } from './components/AuthProvider';
+import CustomerList from './pages/CustomerList';
+
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -18,16 +21,22 @@ const App = () => {
   }, []);
 
   return (
+    <AuthProvider>
     <Router>
-      <MainNavBar />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/add-new-customer" element={<AddNewCustomer />} />
+        <Route path="/customer-list" element={<CustomerList />} />
+        
         {isAuthenticated ? (
+
           <Route
             path="/dashboard"
             element={
+              <>
+              <MainNavBar />
               <div className="flex flex-row h-screen">
                 <SideBar />
                 <div className="flex-1 flex flex-col">
@@ -37,6 +46,7 @@ const App = () => {
                   </div>
                 </div>
               </div>
+              </>
             }
           />
         ) : (
@@ -44,6 +54,7 @@ const App = () => {
         )}
       </Routes>
     </Router>
+    </AuthProvider>
   );
 };
 

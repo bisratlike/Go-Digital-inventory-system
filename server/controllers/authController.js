@@ -62,15 +62,15 @@ const sendResetPasswordEmail = (userEmail, resetPasswordToken) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.user,
-      pass: process.env.pass,
+      user: "deluxgemstore@gmail.com",
+      pass: "jrnc eviz hxpr vmyb ",
     },
   });
 
   const resetPasswordLink = `https://yourapp.com/reset-password?token=${resetPasswordToken}`;
 
   const mailOptions = {
-    from: "figmagodigital@gmail.com",
+    from: "deluxgemstore@gmail.com",
     to: userEmail,
     subject: "Reset Your Password",
     html: `<p>Click <a href="${resetPasswordLink}">here</a> to reset your password.</p>`,

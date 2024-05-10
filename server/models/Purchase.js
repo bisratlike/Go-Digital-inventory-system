@@ -1,53 +1,54 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const purchaseSchema = new mongoose.Schema({
   employeeId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Employee',
-    required: true
+    ref: "Employee",
+    required: true,
   },
   purchaseName: {
     type: String,
-    required: true
+    required: true,
   },
   quantity: {
     type: Number,
-    required: true
+    required: true,
   },
   serialNumber: {
-    type: String
+    type: String,
   },
   price: {
     type: Number,
-    required: true
+    required: true,
   },
   category: {
-    type: String
+    type: String,
   },
-  orderDate: {
+  receivedAt: {
     type: Date,
-    required: true
+    required: true,
   },
   receiptPhoto: {
-    type: String
+    type: String,
   },
   vendorId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Vendor"
-    
+    ref: "Vendor",
   },
   vendorName: {
     type: String,
-    
   },
   phoneNumber: {
     type: String,
   },
+  vendorsEmail: {
+    type: String,
+  },
   description: {
-    type: String
-  }
+    type: String,
+  },
 });
 
-const Purchase = mongoose.model('Purchase', purchaseSchema);
+const Purchase = mongoose.model("Purchase", purchaseSchema);
 
 module.exports = Purchase;

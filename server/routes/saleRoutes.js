@@ -7,8 +7,6 @@ const upload = multer();
 const Sale = require("../models/Sale");
 
 
-// authMiddleware.authenticate,
-// authMiddleware.authorize("salesManager"),
 
 router.post(
   "/addsales",
@@ -18,6 +16,6 @@ router.post(
   saleController.addSales
 );
 
-router.put("/updateOrderStatus", saleController.updateOrderStatus);
+router.put("/updateOrderStatus/:_id", saleController.updateOrderStatus);
 
 module.exports = router;
