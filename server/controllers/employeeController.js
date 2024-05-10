@@ -1,6 +1,8 @@
 const Employee = require("../models/Employee");
 const nodemailer = require('nodemailer');
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
+const { validationResult } = require('express-validator');
+
 
 class employeeController{
     
