@@ -7,7 +7,7 @@ const employeSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   phoneNumber: { type: String},
-  role: { type: String, enum: ['salesManager','purchaserManager', 'manager','ceo'], required: true},
+  role: { type: String, enum: ['salesManager','purchaseManager', 'manager','ceo'], required: true},
   types:{ type: String, required: true}
 });
 
