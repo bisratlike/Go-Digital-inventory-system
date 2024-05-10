@@ -1,5 +1,6 @@
 const Employee = require("../models/Employee");
 const nodemailer = require('nodemailer');
+const bcrypt = require("bcryptjs");
 
 class employeeController{
     
@@ -86,6 +87,7 @@ class employeeController{
           if (!existingEmployee) {
             return res.status(404).json({ error: "Employee not found." });
           }
+          
           
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
           
