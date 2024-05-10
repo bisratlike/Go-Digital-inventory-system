@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
   employeeId: {
@@ -8,34 +8,34 @@ const productSchema = new mongoose.Schema({
   },
   saleName: {
     type: String,
-    required: [true, "Product name is required"],
+    required: [true, 'Product name is required'],
   },
   price: {
     type: Number,
-    required: [true, "Price is required"],
+    required: [true, 'Price is required'],
   },
   quantity: {
     type: Number,
-    required: [true, "Quantity is required"],
+    required: [true, 'Quantity is required'],
   },
   serialNumber: {
     type: String,
   },
   amountPaid: {
     type: Number,
-    required: [true, "Amount paid is required"],
+    required: [true, 'Amount paid is required'],
   },
   category: {
     type: String,
   },
   orderStatus: {
     type: String,
-    required: [true, "Order status is required"],
-    enum: ["planning", "in-Progress", "delivered", "cancel"], // Restrict to these three choices
+    required: [true, 'Order status is required'],
+    enum: ['planning', 'in-Progress', 'delivered', 'cancel'], // Restrict to these three choices
   },
   orderedAt: {
     type: Date,
-    required: [true, "Order date is required"],
+    required: [true, 'Order date is required'],
   },
   deliveredAt: {
     type: Date,
@@ -45,23 +45,22 @@ const productSchema = new mongoose.Schema({
   },
   paymentStatus: {
     type: String,
-    required: [true, "Payment status is required"],
-    enum: ["pending", "completed", "prePayment", "cancel"], // Restrict to these three choices
+    required: [true, 'Payment status is required'],
+    enum: ['pending', 'completed', 'prePayment', 'cancel'], // Restrict to these three choices
+  },
+  customerName: {
+    type: String,
+    ref: 'Customer',
   },
   customerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Customer",
   },
-  customerName: {
-    type: String,
-    
-  },
   description: {
     type: String,
-    
   },
 });
 
-const Sale = mongoose.model("Sale", productSchema);
+const Sale = mongoose.model('Sale', productSchema);
 
 module.exports = Sale;
