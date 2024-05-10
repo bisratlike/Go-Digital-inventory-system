@@ -68,7 +68,7 @@ const Dashboard = ({ userName }) => {
   }, [stockReportData]);
 
   return (
-    <div className="min-h-screen  lg: mt-20 "> {/* Adjusted margin for large screens */}
+    <div className="min-h-screen w-full  "> {/* Adjusted margin for large screens */}
       <div className="text-[25px] font-bold mb-4 bg-secondary-color text-white p-10">Hello, {userName}</div>
 
       <div className=' m-auto'>

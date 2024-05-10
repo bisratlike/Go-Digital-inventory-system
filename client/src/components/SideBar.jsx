@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import {useAuth} from './AuthProvider'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -25,10 +26,28 @@ import {
 import { ChevronRightIcon, ChevronDownIcon,ShoppingCartIcon   } from "@heroicons/react/24/outline";
 // import { MenuIcon } from '@heroicons/react/24/outline';
 
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios'; 
+
  
  function SideBar() {
+
+  const { user } = useAuth(); // Get the current user from context
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/signup');
+        setRole(response.data.role);
+        console.log(response.data.role)
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserRole();
+  }, []);
+
   const [open, setOpen] = React.useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
  
@@ -41,10 +60,23 @@ import { useState } from "react";
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const {Logout} = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    Logout(); // Call the logout function to clear the session
+    navigate('/login'); // Redirect to login page after logging out
+  };
+
+
+  const canSeeSales = ["ceo", "manager", "salesManager"].includes(role);
+  const canSeePurchase = ["ceo", "manager", "purchaserManager"].includes(role);
+  const canSeeReports = ["ceo", "manager"].includes(role);
+
   return (
-    <aside className="w-64 -z-1 inset-y-0 left-0">
-   <div className=" hidden md:block top-14  ">
-    <Card className="z-400 h-[100vh] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-background-color flex flex-col">
+    <aside className="hidden md:block top-14 w-64 inset-y-0 left-0">
+   <div className="   ">
+    <Card className=" h-[100vh] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-background-color flex flex-col">
 
     
       <div className="mt-[44.6px]">
@@ -63,7 +95,9 @@ import { useState } from "react";
               </Typography>
         </ListItem>
         </Link>
-        <Accordion
+
+        {/* {canSeeSales && ( */}
+          <Accordion
           open={open === 1}
           icon={
             <ChevronDownIcon
@@ -113,7 +147,9 @@ import { useState } from "react";
             )}
           </AccordionBody>
         </Accordion>
-        <Accordion
+        {/* )} */}
+        {/* {canSeePurchase && ( */}
+          <Accordion
           open={open === 2}
           icon={
             <ChevronDownIcon
@@ -157,6 +193,8 @@ import { useState } from "react";
             )}
           </AccordionBody>
         </Accordion>
+        {/* )} */}
+        
 
         <Accordion
           open={open === 3}
@@ -224,18 +262,21 @@ import { useState } from "react";
           </ListItemPrefix>
           Settings
         </ListItem>
-        <ListItem>
+        <Link onClick={handleLogout}>
+          <ListItem>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
           Log Out
         </ListItem>
+        </Link>
+        
       </List>
     </Card>
     </div>
 
     <div className="lg:hidden fixed top-6 right-14 z-100">
-        <button onClick={toggleSidebar} className="text-white">
+        <button onClick={toggleSidebar} className="text-black">
         <FontAwesomeIcon icon={faBars} size="lg" />
         </button>
     </div>
