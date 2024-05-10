@@ -74,13 +74,15 @@ import axios from 'axios';
   const canSeeReports = ["ceo", "manager"].includes(role);
 
   return (
-    <aside className="hidden md:block top-14 w-64 inset-y-0 left-0">
-   <div className="   ">
-    <Card className=" h-[100vh] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-background-color flex flex-col">
+
+    <aside className="hidden md:block top-14 w-64 h-[100%] z-1 inset-y-0 left-0 font-montserrat">
+   <div className="">
+    <Card className="z-400 h-[100vh] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-background-color flex flex-col">
+
 
     
       <div className="mt-[44.6px]">
-        <Typography variant="h6" color="blue-gray">
+        <Typography variant="h6" className="font-[10px] text-tertiary">
           General
         </Typography>
       </div>
@@ -88,9 +90,9 @@ import axios from 'axios';
      <Link to='/'>
       <ListItem>
           <ListItemPrefix>
-            <HomeIcon className="h-8 w-8" />
+            <HomeIcon className="h-5 w-5" />
           </ListItemPrefix>
-          <Typography color="blue-gray" className="mr-auto font-bold text-[25px]">
+          <Typography color="blue-gray" className="mr-auto font-[500] text-[16px]">
                 Home
               </Typography>
         </ListItem>
@@ -111,14 +113,14 @@ import axios from 'axios';
               <ListItemPrefix>
                 <ShoppingCartIcon  className="h-5 w-5" />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
+              <Typography color="blue-gray" className="mr-auto font-[500] text-[16px]">
                 Sales
               </Typography>
             </AccordionHeader>
           </ListItem>
           <AccordionBody className="py-1">
             {open==1 && (
-            <List className="p-0">
+            <List className="p-0 text-[14px]">
               <ListItem>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
@@ -163,14 +165,14 @@ import axios from 'axios';
               <ListItemPrefix>
                 <ShoppingBagIcon className="h-5 w-5" />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
+              <Typography color="blue-gray" className="mr-auto font-[500] text-[16px]">
                 Purchase
               </Typography>
             </AccordionHeader>
           </ListItem>
           <AccordionBody>
             {open === 2 && (
-              <List className="p-0">
+              <List className="p-0 text-[14px]">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon className="h-5 w-5" />
@@ -210,14 +212,14 @@ import axios from 'axios';
               <ListItemPrefix>
                 <PresentationChartBarIcon  className="h-5 w-5" />
               </ListItemPrefix>
-              <Typography color="blue-gray" className="mr-auto font-normal">
+              <Typography color="blue-gray" className="mr-auto font-[500] text-[16px]">
                 Report
               </Typography>
             </AccordionHeader>
           </ListItem>
           <AccordionBody>
             {open === 3 && (
-              <List className="p-0">
+              <List className="p-0 text-[14px]">
                 <ListItem>
                   <ListItemPrefix>
                     <ChevronRightIcon className="h-5 w-5" />
@@ -237,7 +239,7 @@ import axios from 'axios';
         <hr className="my-2 border-blue-gray-50" />
 
         <div className="">
-        <Typography variant="h6" color="blue-gray">
+        <Typography variant="h6" className="font-[10px] text-tertiary pt-2 pb-2" color="blue-gray">
           Support
         </Typography>
       </div>
@@ -250,20 +252,21 @@ import axios from 'axios';
             <Chip value="14" size="sm" variant="ghost" color="blue-gray" className="rounded-full" />
           </ListItemSuffix>
         </ListItem> */}
-        <ListItem>
+        <ListItem className="font-[500]">
           <ListItemPrefix>
             <UserCircleIcon className="h-5 w-5" />
           </ListItemPrefix>
           Profile
         </ListItem>
-        <ListItem>
+        <ListItem className="font-[500]">
           <ListItemPrefix>
             <Cog6ToothIcon className="h-5 w-5" />
           </ListItemPrefix>
           Settings
         </ListItem>
-        <Link onClick={handleLogout}>
-          <ListItem>
+
+        <ListItem className="font-[500]">
+
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>

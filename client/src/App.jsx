@@ -7,8 +7,10 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './components/Dashboard';
 import AddNewCustomer from './pages/AddNewCustomer'
+
 import { AuthProvider } from './components/AuthProvider';
 import CustomerList from './pages/CustomerList';
+
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
