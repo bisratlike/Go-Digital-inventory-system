@@ -2,6 +2,8 @@ const Employee = require("../models/Employee");
 const nodemailer = require('nodemailer');
 const bcrypt = require("bcrypt");
 const { validationResult } = require('express-validator');
+const jwt = require("jsonwebtoken");
+require('dotenv').config();
 
 
 class employeeController{
@@ -62,7 +64,30 @@ class employeeController{
     };
 
 
-
+    //one employee
+    static async getOneEmployee(req, res) {
+      
+      try {
+        const token = req.header("Authorization").split(" ")[1];
+        const decodedToken = jwt.verify(token, process.env.jwtWebTokenKey);
+        const id = decodedToken.employeeId;
+        const employee = await Employee.findById(id);
+  
+        if (!employee) {
+          return res.status(404).json({ error: "employee not found" });
+        }
+  
+        return res.status(200).json(employee);
+      } catch (error) {
+        console.error(
+          `Error occured while gettting a employee: ${error.message}`
+        );
+        return res
+          .status(500)
+          .json({ error: "An error occured while getting a employee" });
+      }
+    }
+  
 
 
 
