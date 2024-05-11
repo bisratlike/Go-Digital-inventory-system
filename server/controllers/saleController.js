@@ -26,6 +26,38 @@ exports.updateOrderStatus = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+//payment status
+
+exports.updatePaymentStatus = async (req, res) => {
+  try {
+      const _id = req.params;
+      const { paymentStatus } = req.body;
+      
+      const updatedPayment = await Sale.findById(_id);
+
+      if (!updatedPayment) {
+          return res.status(404).json({ message: 'SALE not found' });
+      }
+      if (updatedPayment.paymentStatus=="completed"){
+        return res.status(404).json({ message: 'payment already completed. you can not update it' });
+      }
+
+
+      updatedPayment.paymentStatus = paymentStatus;
+      await updatedPayment.save();
+
+      res.status(200).json({ message: 'payment status updated successfully', paymentStatus });
+  } catch (error) {
+      res.status(500).json({ error: error.message });
+  }
+};
+
+
+
+
+
+
 exports.addSales =   async (req, res) => {
     try {
       const token = req.header("Authorization").split(" ")[1];

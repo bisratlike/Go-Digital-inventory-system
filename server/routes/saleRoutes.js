@@ -17,5 +17,5 @@ router.post(
 );
 
 router.put("/updateOrderStatus/:_id", saleController.updateOrderStatus);
-
+router.put("/updatePaymentStatus/:_id", saleController.updatePaymentStatus);
 module.exports = router;
