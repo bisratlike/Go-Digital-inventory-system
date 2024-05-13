@@ -7,7 +7,7 @@ import { faInstagram, faTwitter, faFacebook } from '@fortawesome/free-brands-svg
 
 const Footer = () => (
   <footer className="w-full bg-white bottom-0 p-3">
-    <div className="p-[1rem] flex flex-row flex-wrap items-left lg:items-center justify-between lg:justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
+    <div className="p-[1rem] flex flex-row flex-wrap items-left lg:items-center justify-between gap-y-6 gap-x-12 bg-white text-center md:justify-between">
       <img src={Logo} alt="GoDigital Logo" className="w-[150px]" />
       <ul className="flex flex-col lg:flex-row lg:items-center gap-y-2 gap-x-8">
         <li>
