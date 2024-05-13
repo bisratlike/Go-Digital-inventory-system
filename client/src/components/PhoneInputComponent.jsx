@@ -1,11 +1,30 @@
 import React from 'react'
 import { Typography, Input } from '@material-tailwind/react'
+import { Controller } from 'react-hook-form'
 
-const PhoneInputComponent = () => {
+
+const PhoneInputComponent = ({control}) => {
   return (
-    <div className="customer__phone w-full md:w-[220px] pb-[2rem]">
-        <Typography className='font-montserrat lg:text-[20px] text-[1rem] font-bold lg:pb-2'>Customer Phone <span className="asterisk text-[#ff0000]">*</span></Typography>
-        <Input className='p-1 w-[290px] rounded-md'/>
+    <div className="customer__phone sm:w-[100%] md:w-[50%] lg:w-[70%]">
+      <Typography className='font-montserrat lg:text-[20px] text-[1rem] font-bold py-[2rem] lg:pb-2'>Customer Phone <span className="asterisk text-[#ff0000]">*</span></Typography>
+      <Controller
+              name='phone'
+              className="customer__phone flex flex-col w-full md:w-[16%] lg:flex-row item-center gap-3"
+              control={control}
+              rules={{ required: 'Phone is required!' }}
+              render={({ field, fieldState }) => (
+                <div className='input__error-container w-[100%]'>
+                <Input {...field}
+                  placeholder='Customer Phone'
+                  error={fieldState.invalid}
+                  helpertext={fieldState.error ? fieldState.error.message : ''}
+                  className='px-[1rem] py-[.5rem] text-[.9rem] w-full lg:w-[30%] rounded-md' />
+                  {fieldState.error && (
+                    <Typography className="text-red-500 inline text-xs mt-1">{fieldState.error.message}</Typography>
+                  )}
+                </div>
+              )}
+            />
     </div>
   )
 }
