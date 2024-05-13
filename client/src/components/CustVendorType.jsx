@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typography, Radio } from '@material-tailwind/react';
 
-const CustomerType = ({inputType}) => {
+const CustVendorType = ({inputType}) => {
   return (
     <div className='pb-[2rem]'>
         <Typography className='font-montserrat lg:text-[20px] text-[1rem] font-bold'>{inputType} Type <span className="asterisk text-[#ff0000]">*</span></Typography>
@@ -13,4 +13,4 @@ const CustomerType = ({inputType}) => {
   )
 }
 
-export default CustomerType
+export default CustVendorType

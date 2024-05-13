@@ -2,10 +2,10 @@ import React from 'react'
 import { Typography, Input } from '@material-tailwind/react';
 import { Controller } from 'react-hook-form';
 
-const EmailInputComponent = ({control}) => {
+const EmailInputComponent = ({control, inputType}) => {
   return (
     <div className="customer__email sm:w-[100%] md:w-[50%] lg:w-[70%]">
-        <Typography className='font-montserrat lg:text-[20px] text-[1rem] font-bold py-[2rem] lg:pb-2'>Customer Email <span className="asterisk text-[#ff0000]">*</span></Typography>
+        <Typography className='font-montserrat lg:text-[20px] text-[1rem] font-bold py-[2rem] lg:pb-2'>{inputType} Email <span className="asterisk text-[#ff0000]">*</span></Typography>
         <Controller
               name='email'
               className="salutation__options flex flex-col w-full md:w-[16%] lg:flex-row item-center gap-3"
