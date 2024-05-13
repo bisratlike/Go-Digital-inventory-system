@@ -5,3 +5,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* .hello div svg{
+    position: absolute;
+    margin-right: auto;
+    right: 0;
+    fill: red;
+} */
