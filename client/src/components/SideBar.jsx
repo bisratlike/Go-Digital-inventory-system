@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -23,16 +22,22 @@ import {
   PowerIcon,
   HomeIcon,
 } from "@heroicons/react/24/solid";
-import { ChevronRightIcon, ChevronDownIcon, ShoppingCartIcon   } from "@heroicons/react/24/outline";
+import { ChevronRightIcon, ChevronDownIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 // import { MenuIcon } from '@heroicons/react/24/outline';
 
 import { Link, useNavigate } from "react-router-dom";
+
 import axios from 'axios'; 
+
 // import { default as decode } from "jwt-decode";
 
 function SideBar() {
+  // const { Logout } = useAuth();
+  // const navigate = useNavigate();
 
-
+  // const [canSeeSales, setCanSeeSales] = useState(false);
+  // const [canSeePurchase, setCanSeePurchase] = useState(false);
+  // const [canSeeReports, setCanSeeReports] = useState(false);
 
   // const [canSeeSales, setCanSeeSales] = useState(false);
   // const [canSeePurchase, setCanSeePurchase] = useState(false);
@@ -57,27 +62,22 @@ function SideBar() {
   // setCanSeePurchase(roles.includes("ceo") || roles.includes("manager") || roles.includes("purchaseManager"));
   // setCanSeeReports(roles.includes("ceo") || roles.includes("manager"));
 
-  const [open, setOpen] = React.useState(0);
+
+  const [open, setOpen] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
- 
+
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
- 
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-
-  
-
   return (
-
     <aside className="hidden md:block top-14 w-64 h-[100%] z-1 inset-y-0 left-0 font-montserrat">
-      <div className="">
+      <div className="card__container">
         <Card className="z-400 h-[100vh] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-background-color flex flex-col">
-
           <div className="mt-[44.6px]">
             <Typography variant="h6" className="font-[10px] text-tertiary">
               General
@@ -116,7 +116,7 @@ function SideBar() {
                 </AccordionHeader>
               </ListItem>
               <AccordionBody className="py-1">
-                {open==1 && (
+                {open === 1 && (
                   <List className="p-0 text-[14px]">
                     <ListItem>
                       <ListItemPrefix>
@@ -277,7 +277,7 @@ function SideBar() {
 
       <div className="lg:hidden fixed top-6 right-14 z-100">
         <button onClick={toggleSidebar} className="text-black">
-          <FontAwesomeIcon icon={faBars} size="lg" />
+          |<FontAwesomeIcon icon={faBars} size="lg" />
         </button>
       </div>
 

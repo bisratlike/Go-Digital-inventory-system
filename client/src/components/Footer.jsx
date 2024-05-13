@@ -1,9 +1,13 @@
 import { Typography, List } from "@material-tailwind/react";
 import Logo from "../assets/GoDigital-Logo.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faTwitter, faFacebook } from '@fortawesome/free-brands-svg-icons';
+
+
 
 const Footer = () => (
   <footer className="w-full bg-white bottom-0 p-3">
-    <div className="p-[1rem] flex flex-row flex-wrap items-center justify-between lg:justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
+    <div className="p-[1rem] flex flex-row flex-wrap items-left lg:items-center justify-between lg:justify-center gap-y-6 gap-x-12 bg-white text-center md:justify-between">
       <img src={Logo} alt="GoDigital Logo" className="w-[150px]" />
       <ul className="flex flex-col lg:flex-row lg:items-center gap-y-2 gap-x-8">
         <li>
@@ -64,9 +68,9 @@ const Footer = () => (
 Your Trusted Inventory Management Partner</Typography>
       </div>
       <div className="socials flex gap-3 items-center">
-        <List className="text-[.8rem] font-[500]">social1</List>
-        <List className="text-[.8rem] font-[500]">social1</List>
-        <List className="text-[.8rem] font-[500]">social1</List>
+        <List className="text-[.8rem] font-[500]"><FontAwesomeIcon icon={faFacebook} className="h-6 w-6 text-primary-color" /></List>
+        <List className="text-[.8rem] font-[500]"><FontAwesomeIcon icon={faInstagram} className="h-6 w-6 text-primary-color" /></List>
+        <List className="text-[.8rem] font-[500]"><FontAwesomeIcon icon={faTwitter} className="h-6 w-6 text-primary-color" /></List>
       </div>
     </div>
     <hr className="my-8 border-blue-gray-50" />

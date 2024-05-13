@@ -10,6 +10,7 @@ import AddNewCustomer from './pages/AddNewCustomer'
 
 import { AuthProvider } from './components/AuthProvider';
 import CustomerList from './pages/CustomerList';
+import AddPurchaseOrder from './pages/AddPurchaseOrder';
 
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/add-new-customer" element={<AddNewCustomer />} />
         <Route path="/customer-list" element={<CustomerList />} />
+        <Route path="/add-purchase-order" element={<AddPurchaseOrder />} />
         
         {isAuthenticated ? (
 

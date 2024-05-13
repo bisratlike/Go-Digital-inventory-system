@@ -3,7 +3,7 @@ import { TextField, Button, Typography, Grid, IconButton } from "@mui/material";
 import { Container } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
-import PersonIcon from '@mui/icons-material/Person';
+import { PersonIcon } from '@mui/icons-material/Person';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -27,7 +27,7 @@ const initialFormData = {
   amount: "",
 };
 
-function NewFo() {
+function AddPurchaseOrder() {
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
@@ -174,4 +174,4 @@ function NewFo() {
   );
 }
 
-export default NewFo;
+export default AddPurchaseOrder;
