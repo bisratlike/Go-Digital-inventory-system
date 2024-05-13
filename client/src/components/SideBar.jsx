@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import { useAuth } from './AuthProvider';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -27,7 +26,9 @@ import { ChevronRightIcon, ChevronDownIcon, ShoppingCartIcon } from "@heroicons/
 // import { MenuIcon } from '@heroicons/react/24/outline';
 
 import { Link, useNavigate } from "react-router-dom";
-// import axios from 'axios'; 
+
+import axios from 'axios'; 
+
 // import { default as decode } from "jwt-decode";
 
 function SideBar() {
@@ -38,15 +39,29 @@ function SideBar() {
   // const [canSeePurchase, setCanSeePurchase] = useState(false);
   // const [canSeeReports, setCanSeeReports] = useState(false);
 
+  // const [canSeeSales, setCanSeeSales] = useState(false);
+  // const [canSeePurchase, setCanSeePurchase] = useState(false);
+  // const [canSeeReports, setCanSeeReports] = useState(false);
+
+  // // const jwt_decode = require("jwt-decode");
   // const userToken = localStorage.getItem('userToken');
-  // const decodedToken = decode(userToken);
-  // const roles = decodedToken.role;
-  
   // useEffect(() => {
-  //   setCanSeeSales(roles.includes("ceo") || roles.includes("manager") || roles.includes("salesManager"));
-  //   setCanSeePurchase(roles.includes("ceo") || roles.includes("manager") || roles.includes("purchaseManager"));
-  //   setCanSeeReports(roles.includes("ceo") || roles.includes("manager"));
-  // }, [roles]);
+  //   if (user) {
+  //     const decoded = decode(user.token);
+  //     const { role } = decoded;
+  //     console.log(role);
+  //     setCanSeeSales(role === "ceo" || role === "manager" || role === "Sales Manager");
+  //     setCanSeePurchase(role === "ceo" || role === "manager" || role === "Purchase Manager");
+  //     setCanSeeReports(role === "ceo" || role === "manager");
+  //   }
+  // }, [user]);
+    
+  
+  
+  // setCanSeeSales(roles.includes("ceo") || roles.includes("manager") || roles.includes("salesManager"));
+  // setCanSeePurchase(roles.includes("ceo") || roles.includes("manager") || roles.includes("purchaseManager"));
+  // setCanSeeReports(roles.includes("ceo") || roles.includes("manager"));
+
 
   const [open, setOpen] = useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -58,11 +73,6 @@ function SideBar() {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
-  // const handleLogout = () => {
-  //   Logout(); // Call the logout function to clear the session
-  //   navigate('/login'); // Redirect to login page after logging out
-  // };
 
   return (
     <aside className="hidden md:block top-14 w-64 h-[100%] z-1 inset-y-0 left-0 font-montserrat">
