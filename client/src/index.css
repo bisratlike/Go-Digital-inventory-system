@@ -13,3 +13,12 @@
     right: 0;
     fill: red;
 } */
+
+.input__error-container.span {
+    position: relative;
+}
+
+.absolute{
+    position: relative;
+}
+
