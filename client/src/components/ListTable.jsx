@@ -1,4 +1,5 @@
 import { Card, Typography, Button } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const TABLE_HEAD = ["Name", "Company Name", "Email", "Mobile Phone", "Recievables", "Date", ""];
 
@@ -53,7 +54,7 @@ function ListTable({ dataType }) {
             All {dataType}
           </Typography>
   
-          <Button className="bg-primary-color rounded-[5px] py-2 px-4 sm:px-5">+New</Button>
+         <Link to='/add-new-customer' className="bg-primary-color rounded-[5px] py-2 px-4 sm:px-5 text-white">+New</Link>
         </div>
   
         <Card className="overflow-x-auto">

@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { TextField, Button, Typography, Grid, IconButton } from "@mui/material";
 import { Container } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
-import { PersonIcon } from '@mui/icons-material/Person';
+import PersonIcon from '@mui/icons-material/Person';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -18,15 +18,6 @@ const schema = yup.object().shape({
   amount: yup.string().required("Amount is required"),
 }).required();
 
-const initialFormData = {
-  name: "",
-  order: "",
-  reference: "",
-  item: "",
-  quantity: "",
-  amount: "",
-};
-
 function AddPurchaseOrder() {
   const navigate = useNavigate();
   const { register, handleSubmit, reset } = useForm({
@@ -36,7 +27,7 @@ function AddPurchaseOrder() {
   const onSubmit = async (data) => {
     try {
       console.log("formData:", data); // Log the data before sending
-      await axios.post("http://localhost:3000", data);
+      await axios.post("http://localhost:3000/api/form-submit", data); // Assuming your backend endpoint is at "http://localhost:3000/api/form-submit"
       toast.success("New Purchase Added Successfully!");
       navigate("/");
       reset();
@@ -48,49 +39,45 @@ function AddPurchaseOrder() {
     }
   };
 
- 
   return (
     <Container>
       <Typography variant="h4" align="left" gutterBottom style={{ color: "#fb8c00" }}>
         Add New Purchase Order
       </Typography>
-      <form onSubmit={handleSubmit(onSubmit)} 
-      className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
         <Grid container spacing={5}>
           <Grid item xs={5}>
-  <TextField
-    label={
-      <>
-        <span>Vendor Name</span>
-        <span style={{ color: "red" }}>*</span>
-      </>
-    }
-    id="name"
-    fullWidth
-    size="small"
-    {...register("name", { required: true })}
-  />
-</Grid>
-<Grid item xs={5}>
-  <TextField
-    label={
-      <>
-        <span>Vendor Order</span>
-        <span style={{ color: "red" }}> *</span>
-      </>
-    }
-    id="order"
-    type="order"
-    size="small"
-    fullWidth
-    {...register("order", { required: true })}
-  />
-</Grid>
-          <Grid item xs={5} >
+            <TextField
+              label={
+                <>
+                  <span>Vendor Name</span>
+                  <span style={{ color: "red" }}>*</span>
+                </>
+              }
+              id="name"
+              fullWidth
+              size="large"
+              {...register("name", { required: true })}
+            />
+          </Grid>
+          <Grid item xs={5}>
+            <TextField
+              label={
+                <>
+                  <span className="">Vendor Order</span>
+                  <span style={{ color: "red" }}> *</span>
+                </>
+              }
+              id="order"
+              size="small"
+              fullWidth
+              {...register("order", { required: true })}
+            />
+          </Grid>
+          <Grid item xs={5}>
             <TextField
               label={<><span>Reference <span style={{ color: "red" }}>*</span></span></>}
               id="reference"
-              type="reference"
               size="small"
               fullWidth
               {...register("reference")}
@@ -105,42 +92,37 @@ function AddPurchaseOrder() {
               {...register("date")}
             />
           </Grid>
-          <Grid item xs={5} style={{marginTop:'10px', marginBottom:'20px'}}>
+          <Grid item xs={5} style={{ marginTop: '10px', marginBottom: '20px' }}>
             <TextField
               label={<><IconButton disabled><PersonIcon /></IconButton> SalesPerson</>}
               id="sales"
               size="small"
-              type="sales"
               fullWidth
               {...register("sales")}
             />
           </Grid>
         </Grid>
-    
-        
         <Grid container spacing={4}>
           <Grid item xs={10}>
-          <label className="bg-gray-400 text-orange font-bold">
-            Item Table
-          </label>
+            <label className="bg-gray-400 text-orange font-bold">
+              Item Table
+            </label>
           </Grid>
           <Grid item xs={5} style={{ marginBottom: '10px', marginTop: '10px' }}>
             <TextField
               label={<span className="text-amber-800">Item Name <span style={{ color: "red" }}>*</span></span>}
-              className="text-amber-800"              
+              className="text-amber-800"
               id="item"
-              type="item"
               size="small"
               fullWidth
               {...register("item")}
             />
           </Grid>
-          <Grid item xs={5} style={{marginTop:'10px'}}>
+          <Grid item xs={5} style={{ marginTop: '10px' }}>
             <TextField
               label={<span>Quantity <span style={{ color: "red" }}>*</span></span>}
               id="quantity"
               size="small"
-              type="quantity"
               fullWidth
               {...register("quantity")}
             />
@@ -150,7 +132,6 @@ function AddPurchaseOrder() {
               label={<span>Rate</span>}
               id="rate"
               size="small"
-              type="quantity"
               fullWidth
               {...register("rate")}
             />
@@ -160,7 +141,6 @@ function AddPurchaseOrder() {
               label={<span>Amount ETB <span style={{ color: "red" }}>*</span></span>}
               id="amount"
               size="small"
-              type="amount"
               fullWidth
               {...register("amount")}
             />

@@ -118,12 +118,14 @@ function SideBar() {
               <AccordionBody className="py-1">
                 {open === 1 && (
                   <List className="p-0 text-[14px]">
+                    <Link to='/customer-list'>
                     <ListItem>
                       <ListItemPrefix>
                         <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                       </ListItemPrefix>
                       Customer
                     </ListItem>
+                    </Link>
                     <ListItem>
                       <ListItemPrefix>
                         <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
