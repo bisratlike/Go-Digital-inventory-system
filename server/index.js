@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT||3000;
 const localdatabase = process.env.localdatabase ;
+const atlas = process.env.atlas;
 app.use(express.json());
 app.use(cors());
 
