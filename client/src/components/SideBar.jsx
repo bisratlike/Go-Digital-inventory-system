@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useAuth } from './AuthProvider';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -28,28 +28,34 @@ import { ChevronRightIcon, ChevronDownIcon, ShoppingCartIcon   } from "@heroicon
 
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'; 
-import { default as decode } from "jwt-decode";
+// import { default as decode } from "jwt-decode";
 
 function SideBar() {
 
 
 
-  const [canSeeSales, setCanSeeSales] = useState(false);
-  const [canSeePurchase, setCanSeePurchase] = useState(false);
-  const [canSeeReports, setCanSeeReports] = useState(false);
+  // const [canSeeSales, setCanSeeSales] = useState(false);
+  // const [canSeePurchase, setCanSeePurchase] = useState(false);
+  // const [canSeeReports, setCanSeeReports] = useState(false);
 
-  // const jwt_decode = require("jwt-decode");
-  const userToken = localStorage.getItem('userToken');
-
-  const decodedToken = decode(userToken);
-  const roles = decodedToken.role
- console.log(roles)
+  // // const jwt_decode = require("jwt-decode");
+  // const userToken = localStorage.getItem('userToken');
+  // useEffect(() => {
+  //   if (user) {
+  //     const decoded = decode(user.token);
+  //     const { role } = decoded;
+  //     console.log(role);
+  //     setCanSeeSales(role === "ceo" || role === "manager" || role === "Sales Manager");
+  //     setCanSeePurchase(role === "ceo" || role === "manager" || role === "Purchase Manager");
+  //     setCanSeeReports(role === "ceo" || role === "manager");
+  //   }
+  // }, [user]);
     
   
   
-  setCanSeeSales(roles.includes("ceo") || roles.includes("manager") || roles.includes("salesManager"));
-  setCanSeePurchase(roles.includes("ceo") || roles.includes("manager") || roles.includes("purchaseManager"));
-  setCanSeeReports(roles.includes("ceo") || roles.includes("manager"));
+  // setCanSeeSales(roles.includes("ceo") || roles.includes("manager") || roles.includes("salesManager"));
+  // setCanSeePurchase(roles.includes("ceo") || roles.includes("manager") || roles.includes("purchaseManager"));
+  // setCanSeeReports(roles.includes("ceo") || roles.includes("manager"));
 
   const [open, setOpen] = React.useState(0);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -61,14 +67,6 @@ function SideBar() {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const {Logout} = useAuth()
-  const navigate = useNavigate()
-
-  const handleLogout = () => {
-    Logout(); // Call the logout function to clear the session
-    navigate('/login'); // Redirect to login page after logging out
   };
 
 
@@ -97,7 +95,7 @@ function SideBar() {
               </ListItem>
             </Link>
 
-            {canSeeSales && (
+            {/* {canSeeSales && ( */}
             <Accordion
               open={open === 1}
               icon={
@@ -148,8 +146,8 @@ function SideBar() {
                 )}
               </AccordionBody>
             </Accordion>
-            )} 
-            {canSeePurchase && (
+            {/* )}  */}
+            {/* {canSeePurchase && ( */}
             <Accordion
               open={open === 2}
               icon={
@@ -194,7 +192,7 @@ function SideBar() {
                 )}
               </AccordionBody>
             </Accordion>
-             )} 
+             {/* )}  */}
 
 
             <Accordion
